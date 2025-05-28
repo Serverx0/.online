@@ -21,8 +21,23 @@
         justify-content: center;
         align-items: center;
         animation: fadeInBg 1.5s ease-in-out;
-
+        overflow: hidden; /* Hide stars that go beyond the screen */
     }
+
+    .star {
+        position: fixed;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 0 5px white;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(105vh) scale(0);
+        }
+    }
+
 .container {
     max-width: 600px;
     margin: auto;
@@ -35,6 +50,7 @@
     animation: slideUp 1s ease-in-out;
     color: #fff;
     text-align: center;
+    z-index: 10; /* Ensure content is above the stars */
 }
 
 h1 {
@@ -44,71 +60,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-
-    .container {
-    max-width: 600px;
-    margin: auto;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 4px 15px rgba(138, 43, 226, 0.2);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    animation: slideUp 1s ease-in-out;
-    color: #fff;
-    text-align: center;
-}
-
-h1 {
-    font-size: 2.8em;
-    color: white; /* Set text color to white */
-    animation: fadeInText 1.5s ease-in-out;
-    margin-bottom: 20px;
-}
-@keyframes fadeInText {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-@keyframes fadeInText {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
     .container:hover {
         transform: scale(1.01);
@@ -185,6 +136,16 @@ h1 {
             opacity: 1;
         }
     }
+.footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 2s ease-in-out;
+    font-size: 0.9em;
+    z-index: 10; /* Ensure footer is above the stars */
+    position: relative; /* Needed for z-index to work */
+}
+
 .footer a {
     color: #fff;
     text-decoration: none;
@@ -215,14 +176,15 @@ h1 {
   </style>
 </head>
 <body>
-
+    <div id="star-container">
+        </div>
 <div class="container">
     <div class="content">
         <img src="https://i.ibb.co/B2wSHtZz/172e1d62b08b19cc3c72ecc4cd31aeda.jpg" style="width: 100%; height: auto; border-radius: 12px;">
         <h1>𝐒𝐞𝐫𝐯𝐞𝐫𝐱 𝐎𝐟𝐟𝐢𝐜𝐢𝐚𝐥</h1>
     </div>
 
-<a href="https://www.mediafire.com/file/hpcdc5xp99z3p0k/%25F0%259D%2597%25A6%25F0%259D%2597%2598%25F0%259D%2597%25A5%25F0%259D%2597%25A9%25F0%259D%2597%2598%25F0%259D%2597%25A5_%25F0%259D%2597%25A9%25F0%259D%259F%25AF.apk/file" class="theme-button">
+<a href="https://www.mediafire.com/file/9068ya1v1drxbhq/SH7W_%2528Loader%2529.apk/file" class="theme-button">
       <i class="fas fa-download"></i> Download APK
     </a>
 
@@ -240,13 +202,43 @@ h1 {
     <p>
         Project by
         <a <a href="" target="_blank">
-            <i class="fab fa-facebook-square"></i>  Abhishek Sahu  
+            <i class="fab fa-facebook-square"></i>  Abhishek Sahu
         </a>
     </p>
     <div class="social-icons">
-     
+
     </div>
 </footer>
   </div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+<script>
+    const starContainer = document.getElementById('star-container');
+    const numberOfStars = 180; // Adjust the number of stars as needed
+
+    function createStar() {
+        const star = document.createElement('div');
+        star.classList.add('star');
+
+        // Random size for the stars
+        const size = Math.random() * 4 + 2; // Size between 2px and 7px
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+
+        // Random position on the screen
+        star.style.left = `${Math.random() * 100}vw`;
+        star.style.top = `${Math.random() * 100}vh`;
+
+        // Random animation duration for varied falling speed
+        const duration = Math.random() * 5 + 6; // Duration between 2s and 5s
+        star.style.animationDuration = `${duration}s`;
+
+        // Random delay to make stars appear at different times
+        star.style.animationDelay = `-${Math.random() * duration}s`;
+
+        starContainer.appendChild(star);
+    }
+
+    for (let i = 0; i < numberOfStars; i++) {
+        createStar();
+    }
+</script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
