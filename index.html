@@ -77,18 +77,19 @@ h1 {
         box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
     }
 
-    .visitor-box {
+    .time-box {
         position: absolute;
-        top: 10px; /* Adjust as needed for vertical placement */
-        left: 10px; /* Adjust as needed for horizontal placement */
+        top: 7px; /* Adjust as needed for vertical placement */
+        left:7px; /* Adjust as needed for horizontal placement */
         background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
-        color: golden;
+        color: lightgreen;
         padding: 8px 12px;
         border-radius: 8px;
-        font-size: 0.9em;
+        font-size: 0.7em;
         z-index: 11; /* Ensure it's above the image */
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(1px);
+        backdrop-filter: blur(0.3px);
+        /* Removed font-family to use the body's default */
     }
 
     .theme-button {
@@ -199,8 +200,8 @@ h1 {
         </div>
 <div class="container">
     <div class="image-box">
-        <div class="visitor-box">
-          <i class="fas fa-eye"></i> 𝐘𝐨𝐮'𝐫𝐞 𝐕𝐢𝐬𝐢𝐭𝐨𝐫 : <span id="visitor-count">0</span>
+        <div class="time-box">
+          <i class="far fa-clock"></i> Time • <span id="current-time"></span>
         </div>
         <img src="https://i.ibb.co/B2wSHtZz/172e1d62b08b19cc3c72ecc4cd31aeda.jpg" style="width: 100%; height: auto; border-radius: 12px;">
     </div>
@@ -228,7 +229,7 @@ h1 {
 
     <p>
         Project by
-        <a <a href="https://www.facebook.com/profile.php?id=61561050269428" target="_blank">
+        <a href="https://www.facebook.com/profile.php?id=61561050269428" target="_blank">
             <i class="fab fa-facebook-square"></i>  Abhishek Sahu
         </a>
     </p>
@@ -268,18 +269,17 @@ h1 {
         createStar();
     }
 
-    // --- Visitor Counter Logic (Client-Side - Resets on page reload) ---
-    let visitorCount = localStorage.getItem('visitorCount');
-
-    if (visitorCount === null) {
-        visitorCount = 1;
-    } else {
-        visitorCount = parseInt(visitorCount) + 1;
+    function updateTime() {
+        const now = new Date();
+        const options = { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+        const currentTime = new Intl.DateTimeFormat('en-IN', options).format(now);
+        document.getElementById('current-time').textContent = currentTime;
     }
 
-    localStorage.setItem('visitorCount', visitorCount);
-    document.getElementById('visitor-count').textContent = visitorCount;
+    // Update the time every second
+    setInterval(updateTime, 1000);
 
-    // Note: This is a basic client-side counter. It resets when the user clears their browser data or uses a different browser. For a persistent and accurate count, you would need to implement a server-side counter using a database.
-</script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+    // Initial call to display the time immediately
+    updateTime();
+</script><script data-cfasync="true" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
