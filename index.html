@@ -38,6 +38,21 @@
         }
     }
 
+.uptime-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #fff;
+    font-size: 0.9em;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 12px;
+    border-radius: 8px;
+    z-index: 20; /* Ensure it's above other elements */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    backdrop-filter: blur(5px); /* Optional blur for the background */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Optional border */
+}
+
 .container {
     max-width: 600px;
     margin: auto;
@@ -178,6 +193,9 @@ h1 {
 <body>
     <div id="star-container">
         </div>
+    <div class="uptime-container">
+        Uptime: <span id="uptime"></span>
+    </div>
 <div class="container">
     <div class="content">
         <img src="https://i.ibb.co/B2wSHtZz/172e1d62b08b19cc3c72ecc4cd31aeda.jpg" style="width: 100%; height: auto; border-radius: 12px;">
@@ -187,7 +205,7 @@ h1 {
 <a href="https://www.mediafire.com/file/hpcdc5xp99z3p0k/%25F0%259D%2597%25A6%25F0%259D%2597%2598%25F0%259D%2597%25A5%25F0%259D%2597%25A9%25F0%259D%2597%2598%25F0%259D%2597%25A5_%25F0%259D%2597%25A9%25F0%259D%259F%25AF.apk/file" class="theme-button">
       <i class="fas fa-download"></i> Download APK
     </a>
-    
+
     <a href="https://www.mediafire.com/file/iu845lv8nii5z72/TokenCokieAppstate.zip/file" class="theme-button">
       <i class="fas fa-download"></i> Download Extainction
     </a>
@@ -205,7 +223,7 @@ h1 {
 
     <p>
         Project by
-        <a <a href="https://www.facebook.com/profile.php?id=61561050269428" target="_blank">
+        <a href="https://www.facebook.com/profile.php?id=61561050269428" target="_blank">
             <i class="fab fa-facebook-square"></i>  Abhishek Sahu
         </a>
     </p>
@@ -244,5 +262,21 @@ h1 {
     for (let i = 0; i < numberOfStars; i++) {
         createStar();
     }
+
+    function updateUptime() {
+        fetch('/api/uptime') // Replace with your actual API endpoint to get uptime
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('uptime').innerText = data;
+            })
+            .catch(error => {
+                console.error('Error fetching uptime:', error);
+                document.getElementById('uptime').innerText = 'N/A';
+            });
+    }
+
+    // Call updateUptime initially and then every few seconds
+    updateUptime();
+    setInterval(updateUptime, 5000); // Update every 5 seconds
 </script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
