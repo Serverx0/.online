@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+      background: linear-gradient(-45deg, #1e1e1e, #330000, #1a1a1a, #4d0000);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      font-family: 'Orbitron', sans-serif;
+      position: relative;
+      color: #fff;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      font-size: 5rem;
+      color: green;
+      animation: glitch 1.5s infinite, pulse 6s infinite ease-in-out;
+      text-shadow: 0 0 1px #ff0033, 0 0 20px #ff0033, 0 0 40px #ff0033;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        text-shadow: 0 0 10px #ff0033, 0 0 20px #ff0033, 0 0 40px #ff0033;
+      }
+      50% {
+        text-shadow: 0 0 20px #ff3366, 0 0 30px #ff3366, 0 0 60px #ff3366;
+      }
+    }
+
+    @keyframes glitch {
+      0% {
+        transform: none;
+      }
+      20% {
+        transform: skew(-0.5deg, -0.9deg);
+      }
+      40% {
+        transform: skew(0.8deg, 0.3deg);
+      }
+      60% {
+        transform: skew(-1deg, 0.6deg);
+      }
+      80% {
+        transform: skew(0.5deg, -0.5deg);
+      }
+      100% {
+        transform: none;
+      }
+    }
+
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+  <div class="centered">
+    <h2>COMING SOON</h2>   
+  </div>
+  <script>
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "HACK123456789001727HACK364SERVERX9292012SERVERX3456789".split("");
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array.from({ length: columns }).fill(1);
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#0f0";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 35);
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });     
+  </script>
+</body>
+</html>
+

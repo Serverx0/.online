@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Facebook and WhatsApp automation tools">
+    <meta name="keywords" content="Facebook tools, WhatsApp tools, token generator, Abhishek Sahu">
+    <meta name="author" content="Abhishek Sahu">
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Existing Dashboard CSS */
+        :root {
+            --primary-color: #00bcd4; /* Teal/Cyan */
+            --secondary-color: #00e5ff; /* Lighter Teal/Cyan */
+            --dark-bg: #1a2a3a; /* Dark blue background */
+            --card-bg: #081b29; /* Slightly lighter blue for cards */
+            --text-color: #ededed; /* Light blue-white text */
+            --hover-color: #00abf0; /* Lighter Teal/Cyan for hover */
+            --border-radius: 10px;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* text-decoration: none; Remove here to avoid conflict with Poppins import below if it defines this */
+            /* border: none; */
+            /* outline: none; */
+            /* scroll-behavior: smooth; */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: #0d1b2a; /* Even darker blue for nav */
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-left, .nav-right {
+            flex: 1;
+            display: flex;
+        }
+
+        .nav-left {
+            justify-content: flex-start;
+        }
+
+        .nav-right {
+            justify-content: flex-end;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 188, 212, 0.5); /* Teal glow */
+            text-align: center;
+            flex: 1;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            gap: 0.5rem;
+        }
+
+        .btn-facebook {
+            background-color: #1877f2; /* Original Facebook blue */
+            color: white;
+        }
+
+        .btn-facebook:hover {
+            background-color: #166fe5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-whatsapp {
+            background-color: #25d366; /* Original WhatsApp green */
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1da851;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-icon {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 25px;
+            justify-content: space-between;
+        }
+
+        .menu-icon span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .menu-icon:hover span {
+            background-color: var(--text-color);
+        }
+
+        .nav-links {
+            display: none; /* Initially hidden for mobile */
+            list-style: none;
+            gap: 1rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--card-bg); /* This is still a solid color for the main container */
+            border-radius: var(--border-radius);
+            box-shadow: 0 0 20px rgba(0, 188, 212, 0.5); /* Teal glow */
+        }
+
+        .status-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .status-box {
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            background-color: transparent; /* Makes the background transparent */
+            border: 2px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            flex-grow: 1;
+            color: white; /* Sets the text color to white */
+        }
+
+        .status-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 229, 255, 0.2); /* Lighter teal glow */
+            border-color: var(--secondary-color);
+        }
+
+        .status-icon {
+            font-size: 1.2rem;
+            color: white; /* Sets the icon color to white */
+        }
+
+        .status-text {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: white; /* Sets the status text color to white */
+        }
+
+        .status-value {
+            font-weight: 600;
+            color: white; /* Sets the status value color to white */
+            margin-left: 0.5rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background-color: transparent; /* Makes the service card background transparent */
+            padding: 1.5rem;
+            border: 3px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            color: white; /* Sets default text color to white for cards */
+        }
+
+        .service-card h2 {
+            color: white; /* Sets heading color to white */
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card p {
+            color: white; /* Sets paragraph text color to white */
+            font-size: 0.9rem;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 229, 255, 0.5); /* Lighter teal glow on hover */
+            border-color: var(--secondary-color); /* Lighter teal border */
+            background: linear-gradient(45deg, rgba(0, 121, 107, 0.5), rgba(0, 150, 136, 0.5), rgba(77, 182, 172, 0.5)); /* Semi-transparent teal gradient on hover */
+        }
+
+        .service-card:hover h2,
+        .service-card:hover p {
+            color: white; /* Ensures text stays white on hover */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--card-bg); /* This is still a solid color for the footer */
+            color: var(--primary-color);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .glowing-arrow {
+            color: var(--primary-color); /* Teal/Cyan */
+            text-shadow: 0 0 10px var(--primary-color);
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 1px var(--primary-color);
+            }
+            to {
+                text-shadow: 0 0 15px var(--primary-color);
+            }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-left, .nav-right {
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .nav-left {
+                justify-content: flex-start;
+            }
+
+            .menu-icon {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                background-color: #0d1b2a;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 1.5rem;
+                transition: left 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                left: 0;
+                display: flex;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .status-box {
+                padding: 0.8rem 1rem;
+            }
+        }
+
+        /* New Portfolio CSS (placed after existing CSS to allow overrides) */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800;900&display=swap');
+
+        /* The '*' selector has already been broadly defined above.
+           Re-defining it here will override some properties from the dashboard CSS.
+           Specifically, 'text-decoration: none;', 'border: none;', 'outline: none;',
+           and 'scroll-behavior: smooth;' are new additions.
+           'font-family' is re-defined, but it's the same 'Poppins'.
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            /* These root variables will override the ones defined earlier */
+            --bg-color: #081b29; /* Dark blue background - same as --card-bg from dashboard */
+            --second-bg-color: #112e42; /* Slightly lighter blue */
+            --text-color: #ededed; /* Light blue-white text - same as existing --text-color */
+            --main-color: #00abf0; /* Lighter Teal/Cyan - same as existing --hover-color */
+        }
+
+        html {
+            font-size: 62.5%; /* This will set the base font size for rem units */
+            overflow-x: hidden;
+        }
+
+        body {
+            /* This will override the background-color of the body from the dashboard CSS */
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 9%;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            transition: .3s;
+        }
+
+        .header.sticky {
+            background: var(--bg-color);
+        }
+
+        /* This .logo selector will override the existing .logo from dashboard CSS */
+        .logo {
+            position: relative;
+            font-size: 2.5rem; /* Larger font size than dashboard logo */
+            color: var(--text-color);
+            font-weight: 600;
+            /* text-shadow and text-align properties from dashboard .logo will be lost unless re-applied */
+            /* flex: 1; from dashboard .logo will also be lost */
+        }
+
+        .navbar {
+            position: relative;
+        }
+
+        .navbar a {
+            font-size: 1.7rem;
+            color: var(--text-color);
+            font-weight: 500;
+            margin-left: 3.5rem;
+            transition: .3s;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: var(--main-color);
+        }
+
+        #menu-icon {
+            position: relative;
+            font-size: 3.6rem;
+            color: var(--text-color);
+            cursor: pointer;
+            display: none;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 10rem 9% 2rem;
+        }
+
+        .home {
+            display: flex;
+            align-items: center;
+            padding: 0 9%;
+            background: url('home.jpg') no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .home-content {
+            max-width: 60rem;
+            z-index: 99;
+        }
+
+        .home-content h1 {
+            position: relative;
+            display: inline-block;
+            font-size: 5.12rem; /* change here */
+            font-weight: 700;
+            line-height: 1.3;
+            /* This will override the existing h1 styles from the dashboard */
+        }
+
+        .home-content h1 span {
+            color: var(--text-color);
+        }
+
+        .home-content .text-animate {
+            position: relative;
+            width: 32.8rem;
+        }
+
+        .home-content .text-animate h3 {
+            /* change here */
+            font-size: 3.05rem;
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: .7px var(--main-color);
+            background-image: linear-gradient(var(--main-color), var(--main-color));
+            background-repeat: no-repeat;
+            -webkit-background-clip: text;
+            background-position: -33rem 0;
+        }
+
+        .home.show-animate .home-content .text-animate h3 {
+            animation: homeBgText 2s linear infinite;
+            animation-delay: 1s;
+        }
+
+        .home-content .text-animate h3::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            border-right: 2px solid var(--main-color);
+            z-index: -1;
+        }
+
+        .home.show-animate .home-content .text-animate h3::before {
+            animation: homeCursorText 2s linear infinite;
+            animation-delay: 1s;
+        }
+
+        .home-content p {
+            position: relative;
+            font-size: 1.6rem;
+            margin: 2rem 0 4rem;
+        }
+
+        .btn-box {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            width: 34.5rem;
+            height: 5rem;
+        }
+
+        /* This .btn selector will significantly override the dashboard's .btn styles */
+        .btn-box .btn {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 15rem;
+            height: 100%;
+            background: var(--main-color);
+            border: .2rem solid var(--main-color);
+            border-radius: .8rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            color: var(--bg-color);
+            z-index: 1;
+            overflow: hidden;
+            transition: .5s;
+        }
+
+        .btn-box .btn:hover {
+            color: var(--main-color);
+        }
+
+        .btn-box .btn:nth-child(2) {
+            background: transparent;
+            color: var(--main-color);
+        }
+
+        .btn-box .btn:nth-child(2):hover {
+            color: var(--bg-color);
+        }
+
+        .btn-box .btn:nth-child(2)::before {
+            background: var(--main-color);
+        }
+
+        .btn-box .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--bg-color);
+            z-index: -1;
+            transition: .5s;
+        }
+
+        .btn-box .btn:hover::before {
+            width: 100%;
+        }
+
+        .home-sci {
+            position: absolute;
+            bottom: 4rem;
+            width: 170px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .home-sci a {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: .2rem solid var(--main-color);
+            border-radius: 50%;
+            font-size: 20px;
+            color: var(--main-color);
+            z-index: 1;
+            overflow: hidden;
+            transition: .5s;
+        }
+
+        .home-sci a:hover {
+            color: var(--bg-color);
+        }
+
+        .home-sci a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--main-color);
+            z-index: -1;
+            transition: .5s;
+        }
+
+        .home-sci a:hover::before {
+            width: 100%;
+        }
+
+        .home-imgHover {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45%;
+            height: 100%;
+            background: transparent;
+            transition: 3s;
+        }
+
+        .home-imgHover:hover {
+            background: var(--bg-color);
+            opacity: .8;
+        }
+
+        .about {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+            background: var(--second-bg-color);
+            padding-bottom: 6rem;
+        }
+
+        .heading {
+            position: relative;
+            font-size: 5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        span {
+            color: var(--main-color);
+        }
+
+        .about-img {
+            position: relative;
+            width: 25rem;
+            height: 25rem;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-img img {
+            width: 90%;
+            border-radius: 50%;
+            border: .2rem solid var(--main-color);
+        }
+
+        .about-img .circle-spin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(0);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border-top: .2rem solid var(--second-bg-color);
+            border-bottom: .2rem solid var(--second-bg-color);
+            border-left: .2rem solid var(--main-color);
+            border-right: .2rem solid var(--main-color);
+            animation: aboutSpinner 8s linear infinite;
+        }
+
+        .about-content {
+            text-align: center;
+        }
+
+        .about-content h3 {
+            position: relative;
+            display: inline-block;
+            font-size: 2.6rem;
+        }
+
+        .about-content p {
+            position: relative;
+            font-size: 1.6rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .btn-box.btns {
+            display: inline-block;
+            width: 15rem;
+        }
+
+        .btn-box.btns a::before {
+            background: var(--second-bg-color);
+        }
+
+        .education {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: auto;
+            padding-bottom: 5rem;
+        }
+
+        .education .education-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5rem;
+        }
+
+        .education-row .education-column {
+            flex: 1 1 40rem;
+        }
+
+        .education-column .title {
+            position: relative;
+            display: inline-block;
+            font-size: 2.5rem;
+            margin: 0 0 1.5rem 2rem;
+        }
+
+        .education-column .education-box {
+            position: relative;
+            border-left: .2rem solid var(--main-color);
+        }
+
+        .education-box .education-content {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .education-box .education-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -1.1rem;
+            width: 2rem;
+            height: 2rem;
+            background: var(--main-color);
+            border-radius: 50%;
+        }
+
+        .education-content .content {
+            position: relative;
+            padding: 1.5rem;
+            border: .2rem solid var(--main-color);
+            border-radius: .6rem;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .education-content .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--second-bg-color);
+            z-index: -1;
+            transition: .5s;
+        }
+
+        .education-content .content:hover::before {
+            width: 100%;
+        }
+
+        .education-content .content .year {
+            font-size: 1.5rem;
+            color: var(--main-color);
+            padding-bottom: .5rem;
+        }
+
+        .education-content .content .year i {
+            padding-right: .5rem;
+        }
+
+        .education-content .content h3 {
+            font-size: 2rem;
+        }
+
+        .education-content .content p {
+            font-size: 1.6rem;
+            padding-top: .5rem;
+        }
+
+        .skills {
+            min-height: auto;
+            padding-bottom: 7rem;
+            background: var(--second-bg-color);
+        }
+
+        .skills h2 {
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .skills .skills-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5rem;
+        }
+
+        .skills-row .skills-column {
+            flex: 1 1 40rem;
+        }
+
+        .skills-column .title {
+            position: relative;
+            display: inline-block;
+            font-size: 2.5rem;
+            margin: 0 0 1.5rem;
+        }
+
+        .skills-column .skills-box {
+            position: relative;
+        }
+
+        .skills-box .skills-content {
+            position: relative;
+            border: .2rem solid var(--main-color);
+            border-radius: .6rem;
+            padding: .5rem 1.5rem;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .skills-box .skills-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--bg-color);
+            z-index: -1;
+            transition: .5s;
+        }
+
+        .skills-box .skills-content:hover::before {
+            width: 100%;
+        }
+
+        .skills-content .progress {
+            padding: 1rem 0;
+        }
+
+        .skills-content .progress h3 {
+            font-size: 1.7rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .skills-content .progress h3 span {
+            color: var(--text-color);
+        }
+
+        .skills-content .progress .bar {
+            height: 2.5rem;
+            border-radius: .6rem;
+            border: .2rem solid var(--main-color);
+            padding: .5rem;
+            margin: 1rem 0;
+        }
+
+        .skills-content .progress .bar span {
+            display: block;
+            height: 100%;
+            border-radius: .3rem;
+            background: var(--main-color);
+        }
+
+        .skills-column:nth-child(1) .skills-content .progress:nth-child(1) .bar span {
+            width: 80%;
+        }
+
+        .skills-column:nth-child(1) .skills-content .progress:nth-child(2) .bar span {
+            width: 50%;
+        }
+
+        .skills-column:nth-child(1) .skills-content .progress:nth-child(3) .bar span {
+            width: 5%;
+        }
+
+        .skills-column:nth-child(1) .skills-content .progress:nth-child(4) .bar span {
+            width: 10%;
+        }
+
+        .skills-column:nth-child(2) .skills-content .progress:nth-child(1) .bar span {
+            width: 10%;
+        }
+
+        .skills-column:nth-child(2) .skills-content .progress:nth-child(2) .bar span {
+            width: 5%;
+        }
+
+        .skills-column:nth-child(2) .skills-content .progress:nth-child(3) .bar span {
+            width: 0%;
+        }
+
+        .skills-column:nth-child(2) .skills-content .progress:nth-child(4) .bar span {
+            width: 0%;
+        }
+
+        .contact {
+            min-height: auto;
+            padding-bottom: 7rem;
+        }
+
+        .contact h2 {
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .contact form {
+            max-width: 70rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact form .input-box {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .contact form .input-box .input-field {
+            position: relative;
+            width: 49%;
+            margin: .8rem 0;
+        }
+
+        .contact form .input-box .input-field input,
+        .contact form .textarea-field textarea {
+            width: 100%;
+            height: 100%;
+            padding: 1.5rem;
+            font-size: 1.6rem;
+            color: var(--text-color);
+            background: transparent;
+            border-radius: .6rem;
+            border: .2rem solid var(--main-color);
+        }
+
+        .contact form .input-box .input-field input::placeholder,
+        .contact form .textarea-field textarea::placeholder {
+            color: var(--text-color);
+        }
+
+        .contact form .focus {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--second-bg-color);
+            border-radius: .6rem;
+            z-index: -1;
+            transition: .5s;
+        }
+
+        .contact form .input-box .input-field input:focus~.focus,
+        .contact form .input-box .input-field input:valid~.focus,
+        .contact form .textarea-field textarea:focus~.focus,
+        .contact form .textarea-field textarea:valid~.focus {
+            width: 100%;
+        }
+
+        .contact form .textarea-field {
+            position: relative;
+            margin: .8rem 0 2.7rem;
+            display: flex;
+        }
+
+        .contact form .textarea-field textarea {
+            resize: none;
+        }
+
+        .contact form .btn-box.btns .btn {
+            cursor: pointer;
+        }
+
+        /* This footer will largely override the dashboard's footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 2rem 9%;
+            background: var(--second-bg-color);
+            /* Existing box-shadow from dashboard footer will be removed unless re-added */
+        }
+
+        .footer-text,
+        .footer-iconTop {
+            position: relative;
+        }
+
+        .footer-text p {
+            font-size: 1.6rem;
+        }
+
+        .footer-iconTop a {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: .8rem;
+            background: var(--main-color);
+            border: .2rem solid var(--main-color);
+            border-radius: .6rem;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .footer-iconTop a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--second-bg-color);
+            z-index: -1;
+            transition: .5s;
+        }
+
+        .footer-iconTop a:hover::before {
+            width: 100%;
+        }
+
+        .footer-iconTop a i {
+            font-size: 2.4rem;
+            color: var(--bg-color);
+            transition: .5s;
+        }
+
+        .footer-iconTop a:hover i {
+            color: var(--main-color);
+        }
+
+        /* ANIMATION RELOAD AND SCROLL */
+        .animate {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            z-index: 98;
+        }
+
+        .animate.home-img {
+            width: 50%;
+        }
+
+        .logo .animate,
+        .navbar .animate,
+        #menu-icon .animate,
+        .home.show-animate .animate {
+            animation: showRight 1s ease forwards;
+            animation-delay: calc(.1s * var(--i));
+        }
+
+        .animate.scroll {
+            transition: 1s ease;
+            transition-delay: calc(.1s / var(--i));
+            animation: none;
+        }
+
+        section:nth-child(odd) .animate.scroll,
+        .footer .animate.scroll {
+            background: var(--second-bg-color);
+        }
+
+        .education .education-box .animate.scroll {
+            width: 105%;
+        }
+
+        .about.show-animate .animate.scroll,
+        .education.show-animate .animate.scroll,
+        .skills.show-animate .animate.scroll,
+        .contact.show-animate .animate.scroll,
+        .footer.show-animate .animate.scroll {
+            transition-delay: calc(.1s * var(--i));
+            width: 0;
+        }
+
+        ::-moz-selection { /* Code for Firefox */
+            color: var(--second-bg-color);
+            background: var(--main-color);
+        }
+
+        ::selection {
+            color: var(--second-bg-color);
+            background: var(--main-color);
+        }
+
+
+        /* BREAKPOINTS */
+        @media (max-width: 1200px) {
+            html {
+                font-size: 55%;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .header {
+                padding: 2rem 4%;
+            }
+
+            section {
+                padding: 10rem 4% 2rem;
+            }
+
+            .home {
+                padding: 0 4%;
+            }
+
+            .footer {
+                padding: 2rem 4%;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .animate.home-img {
+                width: 55%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                background: var(--bg-color);
+            }
+
+            #menu-icon {
+                display: block;
+            }
+
+            /* This will override nav-links display property for mobile */
+            .nav-links {
+                position: absolute; /* Changed from fixed to absolute, could be a conflict point */
+                top: 100%;
+                left: -100%;
+                width: 100%;
+                padding: 1rem 4%;
+                background: var(--main-color);
+                box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+                z-index: 1;
+                transition: .25s ease;
+                transition-delay: .25s;
+                /* flex-direction, align-items from dashboard nav-links will be overridden */
+            }
+
+            .nav-links.active {
+                left: 0;
+                transition-delay: 0s;
+                background: #0066ff;
+            }
+
+            .navbar .active-nav {
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: var(--bg-color);
+                border-top: .1rem solid rgba(0, 0, 0, .2);
+                z-index: -1;
+                transition: .25s ease;
+                transition-delay: 0s;
+            }
+
+            .navbar.active .active-nav {
+                left: 0;
+                transition-delay: .25s;
+            }
+
+            .navbar a {
+                display: block;
+                font-size: 2rem;
+                margin: 3rem 0;
+                transform: translateX(-20rem);
+                transition: .25s ease;
+                transition-delay: 0s;
+            }
+
+            .navbar.active a {
+                transform: translateX(0);
+                transition-delay: .25s;
+            }
+
+            .home-imgHover {
+                pointer-events: none;
+                background: var(--bg-color);
+                opacity: .6;
+            }
+        }
+        .rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .raindrop {
+            position: absolute;
+            top: -10%;
+            width: 2px;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+            }
+        }
+        @media (max-width: 520px) {
+            html {
+                font-size: 50%;
+            }
+
+            .home-content h1 {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .home-sci {
+                width: 160px;
+            }
+
+            .home-sci a {
+                width: 38px;
+                height: 38px;
+            }
+        }
+
+        @media (max-width: 462px) {
+            .home-content h1 {
+                font-size: 5.2rem;
+            }
+
+            .education {
+                padding: 10rem 4% 5rem 5%;
+            }
+
+            .contact form .input-box .input-field {
+                width: 100%;
+            }
+
+            .footer {
+                flex-direction: column-reverse;
+            }
+
+            .footer p {
+                margin-top: 2rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 371px) {
+            .home {
+                justify-content: center;
+            }
+
+            .home-content {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .home-content h1 {
+                font-size: 5rem;
+            }
+        }
+
+
+        /* KEYFRAMES ANIMATION */
+        @keyframes homeBgText {
+
+            0%,
+            10%,
+            100% {
+                background-position: -33rem 0;
+            }
+
+            65%,
+            85% {
+                background-position: 0 0;
+            }
+        }
+
+        @keyframes homeCursorText {
+
+            0%,
+            10%,
+            100% {
+                width: 0;
+            }
+
+            65%,
+            78%,
+            85% {
+                width: 100%;
+                opacity: 1;
+            }
+
+            75%,
+            81% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes aboutSpinner {
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @keyframes showRight {
+            100% {
+                width: 0;
+            }
+        }
+
+
+        .search-container {
+            position: fixed;
+            bottom: 20px; /* Changed from top: 20px to bottom: 20px */
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .search-box {
+            display: none;
+            position: absolute;
+            bottom: 0; /* Changed from top: 0 to bottom: 0 */
+            left: 40px;
+            padding: 5px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 250px;
+        }
+
+        .search-input {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        .search-container {
+            bottom: 10px; /* Adjusted for responsiveness */
+            left: 10px;
+        }
+
+        .search-box {
+            width: 200px; /* Adjusted width */
+        }
+
+        /* This media query is duplicated and will only apply the last width */
+        @media (max-width: 480px) { /* This media query was also in dashboard CSS, consider merging/reconciling */
+            .search-box {
+                width: 180px; /* Adjusted width for small screens */
+            }
+        }
+
+
+        /* Center the Welcome Box */
+        #welcome-box {
+            background-color: #1e3a8a; /* Deep blue background */
+            color: #ffffff; /* White text */
+            width: 100%; /* Full width */
+            max-width: 400px; /* Smaller max width for a contained design */
+            padding: 15px; /* Reduced padding for a smaller box */
+            border-radius: 10px; /* Slightly smaller rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+            margin: 40px auto; /* Centering the box horizontally with auto margins */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s ease; /* Smooth transition effect */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Hover effect */
+        #welcome-box:hover {
+            background-color: #2563eb; /* Lighter blue on hover */
+        }
+
+        /* Inner card styles */
+        #welcome-box .card-body {
+            width: 100%;
+            max-width: 350px; /* Smaller max width for the inner card */
+        }
+
+        /* Red Box inside the Welcome Box */
+        #welcome-box .card-body .bg-red-600 {
+            background-color: #dc2626; /* Red background */
+            width: 100%;
+            max-width: 350px; /* Limit the size */
+            padding: 12px; /* Reduced padding */
+            border-radius: 8px;
+            margin: 15px auto; /* Reduced margin to fit the smaller size */
+        }
+
+        /* Welcome message text */
+        #welcome-message {
+            font-size: 20px; /* Smaller font size for the welcome text */
+            font-weight: bold; /* Bold text */
+            color: #ffffff; /* White text */
+        }
+
+        /* This rule was incomplete in your provided CSS, so I'm commenting it out or assuming it's for 'Face' */
+        /* .Fac { */
+        /* } */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="status-container">
+            <div class="status-box ping-box">
+                <i class="fas fa-signal status-icon"></i>
+                <span class="status-text">Ping</span>
+                <span class="status-value" id="pingValue"><span class="loading"></span>Calculating...</span>
+            </div>
+
+            <div class="status-box time-box">
+                <i class="fas fa-clock status-icon"></i>
+                <span class="status-text">Time</span>
+                <span class="status-value" id="timeValue"><span class="loading"></span>Loading...</span>
+            </div>
+
+            <div class="status-box date-box">
+                <i class="fas fa-calendar-day status-icon"></i>
+                <span class="status-text">Date</span>
+                <span class="status-value" id="dateValue"><span class="loading"></span>Loading...</span>
+            </div>
+            Total Users !
+            <div id="sfcn2zqrasxsa59ju7x9aezewybmuc26nf5"></div>
+            <script type="text/javascript"  src="https://counter4.optistats.ovh/private/counter.js?c=n2zqrasxsa59ju7x9aezewybmuc26nf5&down=async" async></script>
+            <noscript><a href="https://www.freecounterstat.com" title="free web counter"><img src="https://counter4.optistats.ovh/private/freecounterstat.php?c=n2zqrasxsa59ju7x9aezewybmuc26nf5" border="0" title="free web counter" alt="free web counter"></a></noscript>
+        </div>
+        <h1 class="glowing-arrow">Serverx Tools</h1>
+
+        <div class="service-grid">
+            <div class="service-card" onclick="window.location.href='http://fi5.bot-hosting.net:20136'">
+                <h2>Convo Tool</h2>
+                <p>𝚃𝙷𝙸𝚂 𝚃𝙾𝙾𝙻 𝚂𝙴𝙽𝙳𝚂 𝙼𝙴𝚂𝚂𝙰𝙶𝙴𝚂 𝚄𝚂𝙸𝙽𝙶 𝙵𝙰𝙲𝙴𝙱𝙾𝙾𝙺 𝚃𝙾𝙺𝙴𝙽</p>
+            </div>
+            <div class="service-card" onclick="window.location.href='http://157.90.181.183:22190/'">
+                <h2>Token Cheaker</h2>
+                <p>𝚃𝙷𝙸𝚂 𝚃𝙾𝙾𝙻 𝙲𝙷𝙴𝙲𝙺𝚂 𝚈𝙾𝚄𝚁 𝙼𝚄𝙻𝚃𝙸𝙿𝙻𝙴 𝚃𝙾𝙺𝙴𝙽𝚂 𝙰𝚃 𝙾𝙽𝙲𝙴</p>
+            </div>
+            <div class="service-card" onclick="window.location.href='http://web0.bhoja-alliance.online:3005/'">
+                <h2>Cookie Cheaker</h2>
+                <p>𝚃𝙷𝙸𝚂 𝚃𝙾𝙾𝙻 𝙲𝙷𝙴𝙰𝙺𝚂 𝚈𝙾𝚄𝚁 𝙼𝚄𝙻𝚃𝙸𝙿𝙻𝙴 𝙲𝙾𝙾𝙺𝙸𝙴 𝙰𝚃 𝙾𝙽𝙲𝙴</p>
+            </div>
+            <div class="service-card" onclick="window.location.href='https://generator.darkester.online/'">
+                <h2>Token Generator</h2>
+                <p>𝚃𝙷𝙸𝚂 𝚃𝙾𝙾𝙻 𝙶𝙴𝙽𝙴𝚁𝙰𝚃𝙴𝚂 𝚈𝙾𝚄𝚁 𝙵𝙱 𝚃𝙾𝙺𝙴𝙽 𝚄𝚂𝙸𝙽𝙶 𝙸𝙽𝚂𝚃𝙰𝙶𝚁𝙰𝙼 𝙻𝙾𝙶𝙸𝙽</p>
+            </div>
+            <div class="service-card" onclick="window.location.href='https://pagetoken.darkester.online/'">
+                <h2>Group Uid Page Extracter</h2>
+                <p>𝚃𝙷𝙸𝚂 𝚃𝙾𝙾𝙻 𝙴𝚇𝚃𝚁𝙰𝙲𝚃𝚂 𝚈𝙾𝚄𝚁 𝙰𝚅𝙰𝙸𝙻𝙰𝙱𝙻𝙴 𝙿𝙰𝙶𝙴 𝚃𝙾𝙺𝙴𝙽𝚂 𝚄𝚂𝙸𝙽𝙶 𝚈𝙾𝚄𝚁 𝙰𝙲𝙲𝙴𝚂𝚂 𝚃𝙾𝙺𝙴𝙽</p>
+            </div>
+            <div class="service-card" onclick="window.location.href='http://104.168.76.139:27009/'">
+                <h2>Group Name Locker</h2>
+                <p>𝚃𝙷𝙸𝚂 𝚃𝙾𝙾𝙻 𝚄𝚂𝙸𝙽𝙶 𝙰𝙿𝙿𝚂𝚃𝙰𝚃𝙴 𝙻𝙾𝙲𝙺 𝚃𝙷𝙴 𝙶𝚁𝙾𝚄𝙿 𝙽𝙰𝙼𝙴</p>
+            </div>
+            <div class="service-card" onclick="window.location.href='https://jsoncookie.darkester.online/'">
+                <h2>Cookie To Json</h2>
+                <p>𝚃𝙷𝙸𝚂 𝚃𝙾𝙾𝙻 𝙲𝙾𝙽𝚅𝙴𝚁𝚃𝚂 𝚈𝙾𝚄𝚁 𝙵𝙱 𝚂𝙴𝚂𝚂𝙸𝙾𝙽 𝙲𝙾𝙾𝙺𝙸𝙴𝚂 𝙸𝙽𝚃𝙾 .𝙹𝚂𝙾𝙽</p>
+            </div>
+
+            <div class="service-card" onclick="window.location.href='http://104.168.76.139:27006/'">
+                <h2>Youtube Downloader</h2>
+                <p>𝚃𝙷𝙸𝚂 𝚃𝙾𝙾𝙻 𝚄𝚂𝙸𝙽𝙶 𝚄𝚁𝙻 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳 𝚅𝙸𝙳𝙴𝙾 𝙰𝙽𝙳 𝙰𝚄𝙳𝙸𝙾</p>
+            </div>
+            <div class="service-card" onclick="window.location.href='http://104.168.76.139:27006/'">
+                <h2>Image Hoster</h2>
+                <p>𝚃𝙷𝙸𝚂 𝚃𝙾𝙾𝙻 𝚄𝙿𝙻𝙾𝙰𝙳 𝚈𝙾𝚄𝚁 𝚂𝙴𝙻𝙴𝙲𝚃𝙴𝙳 𝙸𝙼𝙰𝙶𝙴 𝙾𝙽 𝙲𝙻𝙾𝚄𝙳</p>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-text">
+            <p>&copy; 2025 Serverx All Rights Reserved.</p>
+        </div>
+        <div class="footer-iconTop">
+            <a href="#"><i class="fas fa-arrow-up"></i></a>
+        </div>
+    </footer>
+
+    <div class="rain"></div>
+       </div>
+    </div>   
+        </div>
+    </div>
+    <script>
+        // Function to toggle mobile menu
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Function to calculate and display ping
+        function calculatePing() {
+            const startTime = new Date().getTime();
+            fetch(window.location.href)
+                .then(response => {
+                    const endTime = new Date().getTime();
+                    const ping = endTime - startTime;
+                    document.getElementById('pingValue').innerHTML = `${ping} ms`;
+                })
+                .catch(error => {
+                    document.getElementById('pingValue').innerHTML = 'Error';
+                    console.error('Ping calculation error:', error);
+                });
+        }
+
+        // Function to display current time and date
+        function updateDateTime() {
+            const now = new Date();
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const dateOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+
+            document.getElementById('timeValue').textContent = now.toLocaleTimeString('en-US', timeOptions);
+            document.getElementById('dateValue').textContent = now.toLocaleDateString('en-US', dateOptions);
+        }
+
+        // Call functions on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            calculatePing();
+            updateDateTime();
+            // Update time and date every second
+            setInterval(updateDateTime, 1000);
+            // Recalculate ping periodically (e.g., every 30 seconds)
+            setInterval(calculatePing, 2000);
+
+            // Add JavaScript for the new elements (rain effect, search, welcome box)
+            // Rain effect (simplified example, a full effect usually requires more dynamic creation)
+            const rainContainer = document.querySelector('.rain');
+            if (rainContainer) {
+                for (let i = 0; i < 50; i++) { // Create 50 raindrops
+                    const raindrop = document.createElement('div');
+                    raindrop.classList.add('raindrop');
+                    raindrop.style.left = `${Math.random() * 100}vw`;
+                    raindrop.style.animationDuration = `${0.5 + Math.random() * 1.5}s`; // Random speed
+                    raindrop.style.opacity = `${0.3 + Math.random() * 0.7}`; // Random opacity
+                    raindrop.style.animationDelay = `-${Math.random() * 2}s`; // Stagger animation start
+                    rainContainer.appendChild(raindrop);
+                }
+            }
+
+            // Search box toggle
+            const searchIcon = document.querySelector('.search-icon');
+            const searchBox = document.querySelector('.search-box');
+            if (searchIcon && searchBox) {
+                searchIcon.addEventListener('click', () => {
+                    searchBox.style.display = searchBox.style.display === 'block' ? 'none' : 'block';
+                });
+            }
+
+            // Welcome box click to hide (example functionality)
+            const welcomeBox = document.getElementById('welcome-box');
+            if (welcomeBox) {
+                welcomeBox.addEventListener('click', () => {
+                    welcomeBox.style.display = 'none'; // Or add a class for fading out
+                });
+            }
+        });
+
+        // Sticky header and animate on scroll (requires more HTML elements like .header, .home, .about etc.)
+        // This is a placeholder for the portfolio's scroll animation logic,
+        // which would require specific HTML structure to target.
+        // For the current dashboard HTML, this might not have visible effects.
+        window.onscroll = () => {
+            const header = document.querySelector('.header');
+            if (header) { // Check if header element exists
+                if (window.scrollY > 100) {
+                    header.classList.add('sticky');
+                } else {
+                    header.classList.remove('sticky');
+                }
+            }
+
+            // Animate on scroll (if corresponding elements with .show-animate are added)
+            // Example:
+            // document.querySelectorAll('section').forEach(sec => {
+            //     let top = window.scrollY;
+            //     let offset = sec.offsetTop - 150;
+            //     let height = sec.offsetHeight;
+            //     if (top >= offset && top < offset + height) {
+            //         sec.classList.add('show-animate');
+            //     } else {
+            //         sec.classList.remove('show-animate');
+            //     }
+            // });
+        };
+    </script>
+</body>
+</html>
