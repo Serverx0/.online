@@ -1,11 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Onfire Abhira Secure Web❤️</title>
+  <title>Onfire Abhira Secure Web</title>
 
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
@@ -21,9 +21,9 @@
     }
 
     body {
-      font-family: "Poppins", Arial, sans-serif;
-      background: #ffffff;
-      color: #0000ff;
+      font-family: "Poppins", sans-serif;
+      background: #ffffff; /* Changed to white background */
+      color: #0000ff; /* Changed to blue text color */
       min-height: 100vh;
       transition: 0.4s;
     }
@@ -37,9 +37,9 @@
       align-items: center;
       position: sticky;
       top: 0;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.7); /* Slightly transparent white for header */
       backdrop-filter: blur(15px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Darker border for contrast */
       z-index: 100;
     }
 
@@ -48,7 +48,7 @@
       font-weight: 700;
       font-family: "Montserrat", sans-serif;
       text-decoration: none;
-      background: linear-gradient(90deg, #007bff, #0056b3);
+      background: linear-gradient(90deg, #007bff, #0056b3); /* Blue gradient for logo */
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -61,7 +61,7 @@
 
     ul li a {
       text-decoration: none;
-      color: #0000cc;
+      color: #0000cc; /* Darker blue for links */
       font-weight: 500;
       position: relative;
       transition: 0.3s;
@@ -69,7 +69,7 @@
 
     ul li a:hover,
     ul li a.active {
-      color: #0056b3;
+      color: #0056b3; /* Darker blue on hover */
     }
 
     ul li a::after {
@@ -77,7 +77,7 @@
       position: absolute;
       width: 0%;
       height: 2px;
-      background: #0056b3;
+      background: #0056b3; /* Blue underline on hover */
       left: 0;
       bottom: -5px;
       transition: 0.3s;
@@ -86,7 +86,7 @@
     ul li a:hover::after {
       width: 100%;
     }
-
+    
     /* Hero Section */
     .main {
       display: flex;
@@ -100,12 +100,12 @@
 
     .detail {
       max-width: 500px;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.8); /* Semi-transparent white for detail section */
       backdrop-filter: blur(18px);
       padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+      border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border */
     }
 
     .detail h1 {
@@ -113,11 +113,11 @@
       font-weight: 800;
       margin-bottom: 15px;
       font-family: "Montserrat", sans-serif;
-      color: #0000ff;
+      color: #0000ff; /* Blue for H1 */
     }
 
     .detail h1 span {
-      background: linear-gradient(90deg, #007bff, #0056b3);
+      background: linear-gradient(90deg, #007bff, #0056b3); /* Blue gradient for span */
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -126,36 +126,33 @@
       font-size: 1.2rem;
       font-weight: 500;
       margin-bottom: 20px;
-      color: #0000cc;
+      color: #0000cc; /* Darker blue for H3 */
     }
 
     .detail p {
       max-width: 450px;
       margin-bottom: 25px;
       line-height: 1.7;
-      color: #3333ff;
+      color: #3333ff; /* Lighter blue for paragraph */
       font-size: 0.95rem;
     }
 
-    /* Button styling */
-    .tool-button {
-      display: inline-block;
+    .btn a button {
       padding: 14px 32px;
       border: none;
       border-radius: 50px;
-      background: linear-gradient(135deg, #007bff, #0056b3);
+      background: linear-gradient(135deg, #007bff, #0056b3); /* Blue gradient for button */
       color: #fff;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
       transition: 0.3s;
-      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
-      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3); /* Blue shadow */
     }
 
-    .tool-button:hover {
+    .btn a button:hover {
       transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 30px rgba(0, 123, 255, 0.5);
+      box-shadow: 0 8px 30px rgba(0, 123, 255, 0.5); /* Enhanced blue shadow on hover */
     }
 
     /* Social Icons */
@@ -170,53 +167,52 @@
       width: 45px;
       height: 45px;
       border-radius: 50%;
-      background: rgba(0, 123, 255, 0.1);
+      background: rgba(0, 123, 255, 0.1); /* Light blue transparent background for icons */
       backdrop-filter: blur(15px);
       font-size: 1.5rem;
-      color: #007bff;
+      color: #007bff; /* Blue icons */
       margin-right: 12px;
       transition: 0.3s;
     }
 
     .social a:hover {
       transform: scale(1.15);
-      background: linear-gradient(135deg, #007bff, #0056b3);
+      background: linear-gradient(135deg, #007bff, #0056b3); /* Blue gradient on hover */
       color: #fff;
     }
 
-    /* Video Section Styling */
-    .video-sec {
-      background: rgba(255, 255, 255, 0.8);
+    /* Image Section */
+    .img-sec {
+      background: rgba(255, 255, 255, 0.8); /* Semi-transparent white for image section */
       backdrop-filter: blur(18px);
       padding: 20px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+      border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border */
     }
 
-    .video-sec video {
+    .img-sec img {
       width: 260px;
       height: 260px;
       object-fit: cover;
       border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Lighter shadow */
       transition: 0.4s;
     }
 
-    .video-sec video:hover {
+    .img-sec img:hover {
       transform: scale(1.05) rotate(1deg);
     }
 
-    /* Media Query */
     @media (max-width: 768px) {
       ul {
         display: none;
       }
-
+      
       header {
           justify-content: center;
       }
-
+      
       .main {
         flex-direction: column-reverse;
         text-align: center;
@@ -224,7 +220,7 @@
         padding: 40px 5%;
       }
 
-      .video-sec video {
+      .img-sec img {
         width: 220px;
         height: 220px;
       }
@@ -246,36 +242,30 @@
       <li><a href="#">Portfolio</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
-  </header>
+    </header>
 
-  <main>
-    <section class="main">
-      <div class="detail">
-        <div class="social">
-          <a href="https://www.instagram.com/abhi_princess_99?igsh=MXJwZGxvazFteGl3eA==" target="_blank"><i class='bx bxl-instagram'></i></a>
-          <a href="https://www.facebook.com/t.w.a.hi.ra.rajput" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
-          <a href="https://wa.me/+917052012106?text=Abhira%20Mam :))%20I%20Want%20Your%20Server%20Approval%20❤️." target="_blank"><i class='bx bxl-whatsapp'></i></a>
-        </div>
-        <h1>Hi, I'm <span>Abhira Rajput</span></h1>
-        <h3>Professional Web "Developer 💻"</h3>
-        <p>I craft modern, responsive, and visually stunning websites with clean code and creativity.
-          This Is The Secure Facebook Automation Website</p>
-        <div class="btn">
-          <a href="http://fi6.bot-hosting.net:21734/" target="_blank" class="tool-button">
-            Tools
-          </a>
-        </div>
+  <section class="main">
+    <div class="detail">
+      <div class="social">        
+        <a href="https://www.instagram.com/abhi_princess_99?igsh=MXJwZGxvazFteGl3eA==" target="_blank"><i class='bx bxl-instagram'></i></a>
+        <a href="https://www.facebook.com/t.w.a.hi.ra.rajput" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="https://wa.me/+917052012106?text=Abhira%20Mam :))%20I%20Want%20Your%20Server%20Approval%20." target="_blank"><i class='bx bxl-whatsapp'></i></a>
       </div>
-      <div class="video-sec">
-        <video autoplay loop> 
-          <source src="your-video-file.mp4" type="video/mp4">
-          <source src="https://files.catbox.moe/f72r4a.mp4" type="video/webm">
-          Your browser does not support the video tag.
-        </video>
+      <h1>Hi, I'm <span>Abhira Rajput</span></h1>
+      <h3>Professional Web "Developer "</h3>
+      <p>I craft modern, responsive, and visually stunning websites with clean code and creativity.  
+        This Is The Secure Facebook Automation Website</p>
+      <div class="btn">
+        <a href="http://fi6.bot-hosting.net:21734/" target="_blank">
+          <button>Tools</button>
+        </a>
       </div>
-    </section>
-  </main>
+    </div>
+    <div class="img-sec">
+      <img src="https://media1.tenor.com/m/mUHMJlNJcaoAAAAC/anime-anime-girl.gif" alt="Profile Image">
+    </div>
+  </section>
 
-</body>
+  </body>
 
 </html>
