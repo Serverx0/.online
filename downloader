@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Universal Video Downloader | Junry Pacot</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at 30% 30%, #0d0d0d, #121212, #1a1a1a);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before, body::after {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.6;
+      animation: floatGlow 8s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    body::before {
+      top: 10%;
+      left: 15%;
+      background: radial-gradient(circle, rgba(255, 60, 60, 0.45), transparent 70%);
+    }
+    body::after {
+      bottom: 10%;
+      right: 15%;
+      background: radial-gradient(circle, rgba(255, 100, 100, 0.4), transparent 70%);
+      animation-delay: 4s;
+    }
+
+    @keyframes floatGlow {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(20px) scale(1.1); }
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      background: linear-gradient(90deg, #ff3b3b, #ff9090, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      margin-bottom: 10px;
+      animation: fadeDown 1s ease;
+      letter-spacing: 1px;
+      z-index: 2;
+    }
+
+    p {
+      color: #ccc;
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 25px;
+      max-width: 600px;
+      line-height: 1.6;
+      z-index: 2;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 540px;
+      padding: 40px 30px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 40px rgba(255, 60, 60, 0.25);
+      overflow: hidden;
+      animation: popUp 1.2s ease;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, #ff3b3b, #ff8686, #ffbaba, transparent 60%);
+      filter: blur(120px);
+      opacity: 0.25;
+      animation: spin 15s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    input {
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 14px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      margin-bottom: 18px;
+      z-index: 2;
+      position: relative;
+      transition: 0.3s ease;
+    }
+
+    input:focus {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 20px #ff3b3b;
+      transform: scale(1.02);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(90deg, #ff3b3b, #ff7070);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 60, 60, 0.6);
+    }
+
+    .loader {
+      margin-top: 20px;
+      display: none;
+      text-align: center;
+    }
+    .loader div {
+      width: 12px;
+      height: 12px;
+      background: #ff3b3b;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 4px;
+      animation: bounce 1.4s infinite ease-in-out both;
+    }
+    .loader div:nth-child(1) { animation-delay: -0.32s; }
+    .loader div:nth-child(2) { animation-delay: -0.16s; }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
+    }
+
+    #video-container {
+      display: none;
+      margin-top: 25px;
+      animation: fadeIn 1s ease forwards;
+      text-align: center;
+    }
+
+    .title-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .title-container img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      padding: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 10px rgba(255, 60, 60, 0.4);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    #title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-shadow: 0 0 10px rgba(255, 59, 59, 0.4);
+    }
+
+    #info {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(255, 59, 59, 0.25);
+    }
+
+    #downloadBtn {
+      margin-top: 12px;
+      background: linear-gradient(90deg, #ff4b4b, #ff7f7f);
+      box-shadow: 0 0 20px rgba(255, 59, 59, 0.5);
+      transition: 0.3s ease;
+    }
+
+    #downloadBtn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 60, 60, 0.7);
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #aaa;
+      font-size: 0.9rem;
+      z-index: 2;
+    }
+
+    footer a {
+      color: #ff3b3b;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-shadow: 0 0 10px #ff3b3b;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes popUp { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+      .container { padding: 28px 18px; }
+      p { font-size: 0.9rem; }
+      #title { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Social Media video Downloader</h1>
+  <p>Download from Facebook, TikTok, YouTube, and more — fast, elegant, and easy ⚡</p>
+
+  <div class="container">
+    <input type="text" id="videoURL" placeholder="Paste your video link here..." />
+    <button onclick="fetchVideo()">🎬 Fetch Video</button>
+
+    <div class="loader" id="loader"><div></div><div></div><div></div></div>
+
+    <div id="video-container">
+      <div class="title-container">
+        <img id="sourceIcon" alt="Source Icon">
+        <h3 id="title"></h3>
+      </div>
+      <div id="info"></div>
+      <select id="qualitySelect" onchange="changeQuality(this.value)"></select>
+      <video id="preview" controls></video>
+      <button id="downloadBtn" onclick="downloadVideo()">⬇️ Download Video</button>
+    </div>
+  </div>
+
+  <footer>
+    Crafted with ❤️ by 
+    <a href="https://www.facebook.com/profile.php?id=example" target="_blank">Junry Pacot</a>
+  </footer>
+
+  <script>
+  </script>
+</body>
+      </html>
