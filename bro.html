@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serverx Browser - Abhishek Sahu</title>
+    <style>
+        /* --- CSS STYLES --- */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; transition: 0.3s; }
+        
+        body {
+            margin: 0; padding: 0; width: 100vw; height: 100vh;
+            background: #000 url('https://i.ibb.co/zLwSSkm/c3e44ecebd921a6da6c9d05133b883db.jpg') center/cover no-repeat fixed;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            font-family: 'Segoe UI', Roboto, sans-serif; overflow: hidden; color: white;
+            position: relative;
+        }
+
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); z-index: 1; }
+
+        /* Instant Falling Stars */
+        #star-field { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; overflow: hidden; }
+        .star { position: absolute; background-color: rgba(255,255,255,0.8); border-radius: 50%; box-shadow: 0 0 5px white; }
+        
+        @keyframes fallAnimation {
+            0% { transform: translateY(-10vh); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(110vh); opacity: 0; }
+        }
+
+        /* Top Bar Neon Glow */
+        .top-bar {
+            position: absolute; top: 0; left: 0; width: 100%; height: 55px;
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex; align-items: center; justify-content: center; z-index: 100;
+        }
+        .top-bar-title { 
+            font-size: 14px; letter-spacing: 6px; font-weight: 800; text-transform: uppercase; color: #fff;
+            text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
+            animation: neonPulse 2s infinite alternate;
+        }
+        @keyframes neonPulse {
+            from { opacity: 0.7; text-shadow: 0 0 5px #00d4ff; }
+            to { opacity: 1; text-shadow: 0 0 15px #00d4ff, 0 0 25px #00d4ff; }
+        }
+
+        /* Clock & Date Section */
+        .brand-section { position: relative; z-index: 10; text-align: center; margin-bottom: 35px; margin-top: 20px; }
+        .live-clock { font-size: 80px; font-weight: 100; letter-spacing: -2px; line-height: 1; }
+        .live-clock span { font-size: 28px; margin-left: 8px; opacity: 0.6; font-family: monospace; }
+        .live-date { font-size: 14px; letter-spacing: 3px; opacity: 0.9; margin-top: 12px; text-transform: uppercase; color: #00d4ff; font-weight: 400; }
+
+        /* Search Area */
+        .main-ui { position: relative; z-index: 10; width: 85%; max-width: 480px; text-align: center; }
+        .search-box {
+            width: 100%; padding: 18px 25px; font-size: 17px; border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2); outline: none; background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(30px); color: white; text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* Bookmarks Grid */
+        .bookmarks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 35px; width: 100%; }
+        .bookmark-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; text-decoration: none; }
+        .b-icon {
+            width: 58px; height: 58px; background: rgba(255,255,255,0.05); border-radius: 15px;
+            display: flex; align-items: center; justify-content: center; font-size: 22px;
+            border: 1px solid rgba(255,255,255,0.1); font-weight: bold; color: #00d4ff;
+        }
+        .b-icon:hover { background: rgba(0,212,255,0.1); border-color: #00d4ff; transform: translateY(-5px); }
+        .b-label { font-size: 10px; margin-top: 10px; color: #bbb; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Footer Section */
+        .footer {
+            position: absolute; bottom: 20px; width: 100%; text-align: center;
+            z-index: 10; font-size: 11px; letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.4); text-transform: uppercase;
+        }
+        .footer b { color: #00d4ff; }
+
+        /* Floating Window Styles */
+        #browser-view-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1000; display: none; justify-content: center; align-items: center;
+            background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px);
+        }
+        #floating-window {
+            width: 90%; height: 90%; background: white; border-radius: 20px;
+            overflow: hidden; display: flex; flex-direction: column;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.9);
+            animation: windowPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes windowPop { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .toolbar { height: 55px; background: #111; display: flex; align-items: center; padding: 0 20px; justify-content: space-between; border-bottom: 2px solid #222; }
+        .url-display { color: #00d4ff; font-size: 12px; font-family: monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%; }
+        .exit-btn { background: #ff4757; color: white; border: none; padding: 8px 18px; border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 11px; }
+        iframe { flex: 1; border: none; width: 100%; background: white; }
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+    <div id="star-field"></div>
+
+    <div class="top-bar">
+        <div class="top-bar-title">Serverx Browser</div>
+    </div>
+
+    <div class="brand-section">
+        <div id="clock" class="live-clock">00:00<span>00</span></div>
+        <div id="date" class="live-date">Loading...</div>
+    </div>
+
+    <div class="main-ui">
+        <form id="searchForm">
+            <input type="text" id="userInput" class="search-box" placeholder="Search..." autocomplete="off">
+        </form>
+        <div class="bookmarks-grid" id="bookmarkContainer"></div>
+    </div>
+
+    <div class="footer">
+        Powered by <b>Abhishek Sahu</b>
+    </div>
+
+    <div id="browser-view-container">
+        <div id="floating-window">
+            <div class="toolbar">
+                <span id="url-status" class="url-display">Connecting...</span>
+                <button class="exit-btn" onclick="closeBrowser()">✕ CLOSE WINDOW</button>
+            </div>
+            <iframe id="mainFrame"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // 1. Instant Star Generation
+        function generateStars() {
+            const starField = document.getElementById('star-field');
+            const starCount = 30; 
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2 + 1; 
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + 'vw';
+                
+                const duration = Math.random() * 15 + 20; 
+                // Delay set to negative values so stars are already mid-fall when loading
+                const delay = Math.random() * -30; 
+                
+                star.style.animation = `fallAnimation ${duration}s linear ${delay}s infinite`;
+                starField.appendChild(star);
+            }
+        }
+
+        // 2. Live Clock & Date
+        function updateTime() {
+            const now = new Date();
+            let h = now.getHours().toString().padStart(2, '0');
+            let m = now.getMinutes().toString().padStart(2, '0');
+            let s = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('clock').innerHTML = `${h}:${m}<span>${s}</span>`;
+            
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('date').textContent = now.toLocaleDateString('en-US', options);
+        }
+
+        // 3. Bookmark Logic
+        let bookmarks = JSON.parse(localStorage.getItem('surfer_final_v1')) || [
+            { name: 'Google', url: 'https://www.google.com' },
+            { name: 'YouTube', url: 'https://www.youtube.com' },
+            { name: 'Wiki', url: 'https://www.wikipedia.org' }
+        ];
+
+        function renderBookmarks() {
+            const container = document.getElementById('bookmarkContainer');
+            container.innerHTML = '';
+            bookmarks.forEach((bm) => {
+                const div = document.createElement('div');
+                div.className = 'bookmark-item';
+                div.innerHTML = `<div class="b-icon" onclick="openUrl('${bm.url}')">${bm.name[0]}</div><div class="b-label">${bm.name}</div>`;
+                container.appendChild(div);
+            });
+            container.innerHTML += `<div class="bookmark-item" onclick="addNew()"><div class="b-icon" style="color:#fff;">+</div><div class="b-label">Add</div></div>`;
+        }
+
+        function addNew() {
+            const name = prompt("Site Name:");
+            const url = prompt("URL:");
+            if(name && url) {
+                bookmarks.push({ name, url: url.includes('://') ? url : 'https://' + url });
+                localStorage.setItem('surfer_final_v1', JSON.stringify(bookmarks));
+                renderBookmarks();
+            }
+        }
+
+        // 4. Browser Controls
+        const searchForm = document.getElementById('searchForm');
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const val = document.getElementById('userInput').value;
+            if(!val) return;
+            const target = val.includes('.') ? (val.includes('://') ? val : 'https://' + val) : 'https://www.bing.com/search?q=' + encodeURIComponent(val);
+            openUrl(target);
+        });
+
+        function openUrl(url) {
+            document.getElementById('url-status').textContent = url;
+            document.getElementById('mainFrame').src = url;
+            document.getElementById('browser-view-container').style.display = 'flex';
+        }
+
+        function closeBrowser() {
+            document.getElementById('browser-view-container').style.display = 'none';
+            document.getElementById('mainFrame').src = "";
+        }
+
+        // Start Everything on Load
+        window.onload = () => {
+            generateStars();
+            updateTime();
+            setInterval(updateTime, 1000);
+            renderBookmarks();
+        };
+    </script>
+</body>
+</html>
