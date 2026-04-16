@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhishek Sahu - Serverx Inc</title>
+    <meta name="description"
+        content="Portfolio of Abhishek Sahu a professional developer specializing in creating premium digital experiences.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
+</head>
+
+<body>
+    <div id="tsparticles"></div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="music-info">
+            <h4 id="music-title">Madonna Frozen</h4>
+            <p id="music-artist">Loading...</p>
+        </div>
+        <div class="music-controls">
+            <button id="prev-btn" class="control-btn"><i class="fas fa-backward"></i></button>
+            <button id="play-btn" class="control-btn play"><i class="fas fa-play"></i></button>
+            <button id="next-btn" class="control-btn"><i class="fas fa-forward"></i></button>
+        </div>
+        <div class="music-progress-container" id="progress-container">
+            <div class="music-progress" id="music-progress"></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">SERVERX<span class="highlight">INC</span></a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="mobile-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <p class="hero-subtitle">Hello, I am</p>
+                    <h1 class="hero-title">Abhishek Sahu</h1>
+                    <h2 class="hero-role">Professional Developer</h2>
+                    <p class="hero-description">Crafting exceptional digital experiences with precision and passion.
+                        Specializing in building scalable, aesthetic, and high-performance web applications.</p>
+                    <div class="hero-buttons">
+                        <a href="http://fi4.bot-hosting.net:21854/" class="btn btn-primary">Tools</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <pre><code><span class="keyword">const</span> <span class="variable">developer</span> = {
+  <span class="property">name</span>: <span class="string">"Abhishek Sahu"</span>,
+  <span class="property">role</span>: <span class="string">"Full Stack Dev"</span>,
+  <span class="property">passion</span>: <span class="string">"Infinite"</span>,
+  <span class="function">code</span>: () => {
+    <span class="keyword">return</span> <span class="string">"Excellence"</span>;
+  }
+};</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section about">
+            <div class="container about-container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="about-content">
+                    <div class="about-image-wrapper">
+                        <div class="image-container">
+                            <img src="profile-main.jpg" alt="Abhishek Sahu Profile" class="about-image main-img">
+                            <img src="profile-hover.jpg" alt="Abhishek Sahu Profile Alternate" class="about-image hover-img">
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <p>I am <strong>Abhishek Sahu</strong>, a dedicated developer with a relentless drive for innovation.
+                            My journey in the tech world is defined by a commitment to mastering complex challenges and
+                            delivering elegant solutions.</p>
+                        <p>With a deep understanding of modern web technologies, I transform ideas into reality. Whether
+                            it's a complex backend system or a stunning frontend interface, I bring a professional touch
+                            to every line of code.</p>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="stat-number">5+</span>
+                                <span class="stat-label">Years Exp.</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Projects</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Satisfaction</span>
+                            </div>
+                        </div>
+                        <div class="about-cta">
+                            <a href="https://wa.me/48459199981"
+                                target="_blank" class="btn btn-instagram">
+                                <i class="fab fa-whatsapp"></i> Contact On WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section skills">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Expertise</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fab fa-html5 skill-icon"></i>
+                        <h3>Frontend</h3>
+                        <p>HTML5, CSS3, JavaScript, React, Tailwind</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-server skill-icon"></i>
+                        <h3>Backend</h3>
+                        <p>Node.js, Express, Python, Database Design</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-paint-brush skill-icon"></i>
+                        <h3>Design</h3>
+                        <p>UI/UX Principles, Responsive Design, Figma</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-rocket skill-icon"></i>
+                        <h3>Performance</h3>
+                        <p>SEO, Optimization, Best Practices</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="projects-grid">
+                    <!-- GitHub Project 1 -->
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(45deg, #1a1a1a, #2a2a2a);">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="project-info">
+                            <h3>V7 Token Generater</h3>
+                            <p>Eaad6v7 Facebook Access Token Generater By Using Termux.</p>
+                            <a href="https://github.com/AbhiiDon/2026" target="_blank"
+                                class="project-link">View Code</a>
+                        </div>
+                    </div>
+                    <!-- GitHub Project 2 -->
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(45deg, #1a1a1a, #2a2a2a);">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <div class="project-info">
+                            <h3>End To End</h3>
+                            <p>Facebook Chat End To End Bypass Tool Using Termux.</p>
+                            <a href="——link——" target="_blank"
+                                class="project-link">View Code</a>
+                        </div>
+                    </div>
+                    <!-- GitHub Project 3 -->
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(45deg, #1a1a1a, #2a2a2a);">
+                            <i class="fas fa-file-code"></i>
+                        </div>
+                        <div class="project-info">
+                            <h3>Anti Dismiss Token Tool</h3>
+                            <p>A Facebook Anti Dismiss Token Chat Offline Server. Password ( SRXINC )</p>
+                            <a href="http://217.154.114.227:12371/" target="_blank"
+                                class="project-link">View Server</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <h2>Let's Work Together</h2>
+                        <p>Have a project in mind? I'm available for freelance work and collaborations.</p>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>asah21381@gmail.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Global / Remote</span>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://github.com/AbhiiDon"><i class="fab fa-github"></i></a>                            
+                            <a href="https://www.facebook.com/profile.php?id=100002357867932"><i class="fab fa-facebook"></i></a>
+                            <a href="https://wa.me/48459199981"
+                                target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Serverx Inc All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
