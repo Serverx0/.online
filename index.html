@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SERVER-X - </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #020205;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+            /* Fade-in Animation */
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        /* Animation Styles */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .fade-out { animation: fadeOut 0.2s ease-in-out forwards; }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+        /* Main Compact Web Panel Container */
+        .premium-dashboard-card {
+            width: 100%;
+            max-width: 345px;
+            background-color: #06060c;
+            border-radius: 24px;
+            padding: 0 0 24px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: visible;
+            
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+            background-size: 14px 14px;
+
+            border: 1px solid rgba(147, 51, 234, 0.25);
+            border-top: 1.5px solid rgba(168, 85, 247, 0.4);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        /* CUSTOM NAVIGATION HEADER BAR */
+        .navbar-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .nav-logo-zone {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-logo-zone i {
+            color: #a855f7;
+            font-size: 1.1rem;
+            filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6));
+        }
+
+        .nav-logo-text {
+            font-size: 1.2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        /* 3-Dots Interactive Wrapper Trigger */
+        .menu-dots-trigger {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .menu-dots-trigger:hover {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: rgba(168, 85, 247, 0.4);
+            color: #ffffff;
+        }
+
+        /* DROPDOWN OPTIONS MENU LIST LAYER */
+        .custom-dropdown-menu {
+            position: absolute;
+            top: 60px;
+            right: 16px;
+            width: 180px;
+            background: rgba(10, 10, 18, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(168, 85, 247, 0.1);
+            z-index: 99;
+            overflow: hidden;
+            display: none;
+            transform-origin: top right;
+            animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes dropdownFadeIn {
+            from { opacity: 0; transform: scale(0.95) translateY(-5px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .dropdown-item-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .dropdown-item-link:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item-link i {
+            font-size: 0.88rem;
+            width: 14px;
+            text-align: center;
+        }
+
+        .dropdown-item-link:hover {
+            background: linear-gradient(90deg, rgba(168, 85, 247, 0.15), transparent);
+            color: #ffffff;
+            padding-left: 18px;
+        }
+        
+        .dropdown-item-link.setup-glow:hover i { color: #a855f7; }
+        .dropdown-item-link.doc-glow:hover i { color: #38bdf8; }
+        .dropdown-item-link.support-glow:hover i { color: #10b981; }
+
+
+        /* ------------------ BODY INTERNAL STRUCTURES ------------------ */
+        .card-inner-body {
+            width: 100%;
+            padding: 20px 16px 0 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Cinema Widescreen Display */
+        .widescreen-media-box {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #000000;
+            border-radius: 14px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 18px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+            padding: 4px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Double Rotating Cyber Lasers */
+        .widescreen-media-box::before {
+            content: '';
+            position: absolute;
+            width: 160%;
+            height: 160%;
+            background: conic-gradient(transparent, #a855f7, transparent 30%);
+            animation: rotateLaser 3.5s linear infinite;
+            z-index: 1;
+        }
+
+        .widescreen-media-box::after {
+            content: '';
+            position: absolute;
+            width: 145%;
+            height: 145%;
+            background: conic-gradient(transparent, #06b6d4, transparent 25%);
+            animation: rotateLaser 2.5s linear infinite reverse;
+            z-index: 2;
+        }
+
+        .media-inner-content {
+            width: 100%;
+            height: 100%;
+            background-color: #040408;
+            border-radius: 10px;
+            overflow: hidden;
+            z-index: 3;
+            position: relative;
+        }
+
+        .media-inner-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 4;
+            position: relative;
+        }
+
+        @keyframes rotateLaser {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .profile-name {
+            font-size: 1.55rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .pill-tag-lead {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            background: rgba(147, 51, 234, 0.08);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #c084fc;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 16px;
+        }
+
+        .bio-wrapper {
+            border-left: 2px solid #a855f7;
+            padding-left: 12px;
+            text-align: left;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .bio-paragraph {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: #94a3b8;
+        }
+
+        .tags-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .tag.fullstack { border: 1px solid rgba(16, 185, 129, 0.22); color: #10b981; background: rgba(16, 185, 129, 0.01); }
+        .tag.automation { border: 1px solid rgba(14, 116, 144, 0.3); color: #38bdf8; background: rgba(14, 116, 144, 0.01); }
+        .tag.integrations { border: 1px solid rgba(124, 58, 237, 0.22); color: #c084fc; background: rgba(124, 58, 237, 0.01); }
+        .tag.networks { border: 1px solid rgba(234, 179, 8, 0.22); color: #eab308; background: rgba(234, 179, 8, 0.01); }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 14px;
+        }
+
+        .metrics-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .metric-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+        }
+
+        .metric-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .metric-value {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.1;
+        }
+
+        .metric-value.purple-text { color: #a855f7; }
+
+        .metric-label {
+            font-size: 0.55rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="premium-dashboard-card">
+        
+        <div class="navbar-header">
+            <div class="nav-logo-zone">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span class="nav-logo-text">SERVER-X</span>
+            </div>
+            
+            <div class="menu-dots-trigger" id="dropdownTrigger">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+            </div>
+
+            <div class="custom-dropdown-menu" id="dropdownMenu">
+                <a href="tools.html" target="_blank" class="dropdown-item-link setup-glow">
+                    <i class="fa-solid fa-gear"></i> Tool Setup
+                </a>
+                <a href="#" target="_blank" class="dropdown-item-link doc-glow">
+                    <i class="fa-solid fa-file-code"></i> Coming Soon 
+                </a>
+                <a href="help.html" class="dropdown-item-link support-glow">
+                    <i class="fa-solid fa-circle-question"></i> Help & Support
+                </a>
+            </div>
+        </div>
+
+        <div class="card-inner-body">
+            
+            <div class="widescreen-media-box">
+                <div class="media-inner-content">
+                    <img src="index.gif" alt="Cinematic Screen Profile View">
+                </div>
+            </div>
+
+            <h1 class="profile-name">ABHISHEK SAHU</h1>
+            
+            <div class="pill-tag-lead">
+                <i class="fa-solid fa-shield-halved" style="font-size: 0.55rem;"></i> Lead Developer
+            </div>
+
+            <div class="bio-wrapper">
+                <p class="bio-paragraph">
+                    Creator and lead engineer of SERVER-X. Specializing in social media automation, large-scale workflow systems, and high-performance tool development. Building powerful tools since 2020.
+                </p>
+            </div>
+
+            <div class="tags-grid">
+                <div class="tag fullstack">
+                    <i class="fa-solid fa-code"></i> Full Stack
+                </div>
+                <div class="tag automation">
+                    <i class="fa-solid fa-microchip"></i> Automation
+                </div>
+                <div class="tag integrations">
+                    <i class="fa-solid fa-stethoscope" style="transform: rotate(-45deg);"></i> Integrations
+                </div>
+                <div class="tag networks">
+                    <i class="fa-solid fa-globe"></i> Networks
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="metrics-container">
+                <div class="metric-item">
+                    <span class="metric-value">50+</span>
+                    <span class="metric-label">Tools Built</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-value">1K+</span>
+                    <span class="metric-label">Users</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-value purple-text">99.9%</span>
+                    <span class="metric-label">Uptime</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Smooth Fade transition logic
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('target') === '_blank') return;
+                e.preventDefault();
+                document.body.classList.add('fade-out');
+                setTimeout(() => { window.location.href = this.href; }, 400);
+            });
+        });
+
+        const trigger = document.getElementById('dropdownTrigger');
+        const menu = document.getElementById('dropdownMenu');
+
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+            }
+        });
+
+        document.addEventListener('click', () => {
+            menu.style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>
