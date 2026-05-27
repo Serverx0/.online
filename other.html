@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERVER-X - Other Tools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #020205; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 15px; animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .fade-out { animation: fadeOut 0.4s ease-in-out forwards; }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+        .premium-dashboard-card { width: 100%; max-width: 345px; background-color: #06060c; border-radius: 24px; padding: 24px; border: 1px solid rgba(147, 51, 234, 0.25); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8); }
+        .navbar-header { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .nav-logo-text { font-size: 1.2rem; font-weight: 800; background: linear-gradient(90deg, #60a5fa, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .back-home { color: #94a3b8; text-decoration: none; font-size: 0.8rem; }
+        .card-inner-body { display: flex; flex-direction: column; gap: 15px; }
+        .tool-box { background: #0b0b12; border: 1px solid rgba(255, 255, 255, 0.05); padding: 16px; border-radius: 16px; display: flex; align-items: center; gap: 15px; text-decoration: none; color: #ffffff; transition: 0.3s; }
+        .glow-purple { border-left: 5px solid #a855f7; }
+        .glow-blue { border-left: 5px solid #06b6d4; }
+        .glow-orange { border-left: 5px solid #f59e0b; }
+        .glow-green { border-left: 5px solid #10b981; }
+        .tool-box:hover { background: rgba(255, 255, 255, 0.03); transform: translateX(5px); }
+        .icon-box { width: 45px; height: 45px; background: rgba(255,255,255,0.05); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; }
+        .tool-text { flex: 1; }
+        .tool-text h3 { font-size: 0.9rem; font-weight: 700; }
+        .tool-text p { font-size: 0.65rem; color: #94a3b8; }
+        .available-text { font-size: 0.6rem; font-weight: 700; margin-top: 2px; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+    <div class="premium-dashboard-card">
+        <div class="navbar-header">
+            <span class="nav-logo-text">OTHER TOOLS</span>
+            <a href="index.html" class="back-home"><i class="fa-solid fa-house"></i> Home</a>
+        </div>
+        <div class="card-inner-body">
+            <a href="token-checker.html" class="tool-box glow-purple">
+                <div class="icon-box"><i class="fa-solid fa-key"></i></div>
+                <div class="tool-text"><h3>Token Checker</h3><p>Validate access tokens</p><div class="available-text" style="color: #a855f7;">Open</div></div>
+            </a>
+            <a href="https://pagetoken.darkesters.online/" class="tool-box glow-blue">
+                <div class="icon-box"><i class="fa-solid fa-users-line"></i></div>
+                <div class="tool-text"><h3>UID Extractor & Page Token</h3><p>Fetch group members</p><div class="available-text" style="color: #06b6d4;">Open</div></div>
+            </a>
+            <a href="#" class="tool-box glow-orange">
+                <div class="icon-box"><i class="fa-solid fa-cookie-bite"></i></div>
+                <div class="tool-text"><h3>Cookie Manager</h3><p>Handle sessions</p><div class="available-text" style="color: #f59e0b;">Open</div></div>
+            </a>
+            <a href="#" class="tool-box glow-green">
+                <div class="icon-box"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                <div class="tool-text"><h3>Account Utility</h3><p>Management tools</p><div class="available-text" style="color: #10b981;">Ready</div></div>
+            </a>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') return;
+                e.preventDefault();
+                document.body.classList.add('fade-out');
+                setTimeout(() => { window.location.href = this.href; }, 400);
+            });
+        });
+    </script>
+</body>
+</html>

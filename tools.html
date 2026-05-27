@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERVER-X - Tool Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #020205; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 15px; animation: fadeIn 0.4s ease-in-out; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .fade-out { animation: fadeOut 0.4s ease-in-out forwards; }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+        .premium-dashboard-card { width: 100%; max-width: 345px; background-color: #06060c; border-radius: 24px; padding: 0 0 24px 0; display: flex; flex-direction: column; align-items: center; position: relative; border: 1px solid rgba(147, 51, 234, 0.25); border-top: 1.5px solid rgba(168, 85, 247, 0.4); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8); }
+        
+        .navbar-header { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 18px 16px; }
+        .nav-logo-text { font-size: 1.2rem; font-weight: 800; background: linear-gradient(90deg, #60a5fa, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .back-home { color: #94a3b8; text-decoration: none; font-size: 0.8rem; }
+
+        /* Time & Date Section */
+        .time-date-container { width: 100%; padding: 0 16px 15px 16px; display: flex; justify-content: space-between; align-items: center; }
+        .time-display { font-size: 0.95rem; font-weight: 700; color: #34d399; }
+        .date-display { font-size: 0.75rem; font-weight: 600; color: #60a5fa; }
+
+        .card-inner-body { width: 100%; padding: 0 16px; display: flex; flex-direction: column; gap: 12px; }
+
+        /* Tools Box Style */
+        .tool-box { width: 100%; background: #0b0b12; border: 1px solid rgba(255, 255, 255, 0.05); padding: 16px; border-radius: 16px; display: flex; align-items: center; gap: 15px; text-decoration: none; color: #ffffff; transition: 0.3s; }
+        .glow-purple { border-left: 5px solid #a855f7; }
+        .glow-blue { border-left: 5px solid #06b6d4; }
+        .glow-green { border-left: 5px solid #10b981; }
+
+        .tool-box:hover { background: rgba(255, 255, 255, 0.03); transform: translateX(5px); }
+        .icon-box { width: 45px; height: 45px; background: rgba(255,255,255,0.05); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 1.1rem; }
+        .tool-text { flex: 1; }
+        .tool-text h3 { font-size: 0.9rem; font-weight: 700; }
+        .tool-text p { font-size: 0.65rem; color: #94a3b8; }
+        .available-text { font-size: 0.6rem; font-weight: 700; margin-top: 2px; text-transform: uppercase; }
+        .arrow-icon { color: #94a3b8; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <div class="premium-dashboard-card">
+        <div class="navbar-header">
+            <span class="nav-logo-text">TOOL DASHBOARD</span>
+            <a href="index.html" class="back-home"><i class="fa-solid fa-house"></i> Home</a>
+        </div>
+
+        <div class="time-date-container">
+            <span id="clock" class="time-display">00:00:00</span>
+            <span id="date" class="date-display">Loading...</span>
+        </div>
+
+        <div class="card-inner-body">
+            <a href="other.html" class="tool-box glow-purple">
+                <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="tool-text">
+                    <h3>Other Tools</h3>
+                    <p>Account management utilities</p>
+                    <div class="available-text" style="color: #a855f7;">Tap To Open</div>
+                </div>
+                <div class="arrow-icon"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+            
+            <a href="#" class="tool-box glow-blue">
+                <div class="icon-box"><i class="fa-solid fa-comments"></i></div>
+                <div class="tool-text">
+                    <h3>Messenger Automation</h3>
+                    <p>Messenger automation tools</p>
+                    <div class="available-text" style="color: #06b6d4;">Coming Soon</div>
+                </div>
+                <div class="arrow-icon"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <a href="#" class="tool-box glow-blue">
+                <div class="icon-box"><i class="fa-solid fa-file-pen"></i></div>
+                <div class="tool-text">
+                    <h3>Whatsapp Automation</h3>
+                    <p>WhatsApp messaging tools</p>
+                    <div class="available-text" style="color: #06b6d4;">Coming Soon</div>
+                </div>
+                <div class="arrow-icon"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+
+            <a href="" class="tool-box glow-green">
+                <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
+                <div class="tool-text">
+                    <h3>Downloader</h3>
+                    <p>Social Media Videos And apk</p>
+                    <div class="available-text" style="color: #10b981;">Alive Ruining</div>
+                </div>
+                <div class="arrow-icon"><i class="fa-solid fa-chevron-right"></i></div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            const dateOptions = { timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short', year: 'numeric' };
+            document.getElementById('clock').textContent = now.toLocaleTimeString('en-IN', options);
+            document.getElementById('date').textContent = now.toLocaleDateString('en-IN', dateOptions);
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('target') === '_blank') return;
+                e.preventDefault();
+                document.body.classList.add('fade-out');
+                setTimeout(() => { window.location.href = this.href; }, 400);
+            });
+        });
+    </script>
+</body>
+</html>
